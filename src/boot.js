@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, useRoutes } from "react-router-dom";
-import getRoutes from "@shack-js/auto-routes-loader/dist/shack-get-routes";
+import getRoutes from "./get-routes";
 import { Suspense } from "react";
 
 let el = document.createElement("div");

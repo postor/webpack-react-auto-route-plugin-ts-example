@@ -1,32 +1,24 @@
 const { resolve, join } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
+const AutoRoutePlugin = require('webpack-react-auto-route-plugin')
 
 module.exports = {
   mode: "development",
   entry: "./src/boot.js",
   output: {
     clean: true,
-    path: resolve(__dirname, "dist")
+    path: resolve(__dirname, "dist"),
+    publicPath: '/'
   },
   module: {
     rules: [
       {
         test: /\.m?js$/,
-        exclude: /(node_modules|bower_components).*(?<!shack-get-routes\.(\w+))$/,
         use: {
           loader: "babel-loader",
           options: {
             presets: ["@babel/preset-env", "@babel/preset-react"]
-          }
-        }
-      },
-      {
-        test: /shack-get-routes\.js$/,
-        use: {
-          loader: "@shack-js/auto-routes-loader",
-          options: {
-            folder: join("src", "pages")
           }
         }
       }
@@ -36,6 +28,11 @@ module.exports = {
     new HtmlWebpackPlugin(),
     new webpack.ProvidePlugin({
       React: "react"
+    }),
+    new AutoRoutePlugin({
+      root: './src/pages',
+      skip: /^\$/,
+      getRoutesFile: /get-routes\.js/,
     })
   ],
   devServer: {
