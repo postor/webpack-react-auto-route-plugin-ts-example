@@ -19,7 +19,7 @@
     "webpack": "^5.88.2",
     "webpack-cli": "4.10.0",
     "webpack-dev-server": "4.11.1",
-    "webpack-react-auto-route-plugin": "^1.0.1"
+    "webpack-react-auto-route-plugin": "^1.0.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.22",
